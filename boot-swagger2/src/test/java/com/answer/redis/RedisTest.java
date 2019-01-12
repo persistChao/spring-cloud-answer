@@ -1,6 +1,6 @@
 package com.answer.redis;
 
-import com.answer.User;
+import com.answer.model.User;
 import com.answer.dao.RedisDao;
 import org.junit.Assert;
 import org.junit.Test;
@@ -59,10 +59,10 @@ public class RedisTest {
     @Test
     public void testHash() {
         HashOperations<String , String , Object> ops = redisTemplate.opsForHash();
-        ops.put("webside" , "baidu" ,"www.baidu.com");
-        ops.put("webside" , "sohu" ,"www.hohu.com");
-        ops.put("webside" , "bing" ,"www.bing.com");
-        ops.put("webside" , "google" ,"www.google.com");
+//        ops.put("webside" , "baidu" ,"www.baidu.com");
+//        ops.put("webside" , "sohu" ,"www.hohu.com");
+//        ops.put("webside" , "bing" ,"www.bing.com");
+//        ops.put("webside" , "google" ,"www.google.com");
         Map<String , Object> objectMap = ops.entries("webside");
         for (Map.Entry<String, Object> entry : objectMap.entrySet()) {
             System.out.println(entry.getKey() + ":" + entry.getValue());
