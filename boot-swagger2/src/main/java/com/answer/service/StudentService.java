@@ -2,8 +2,11 @@ package com.answer.service;
 
 import com.answer.dao.StudentDao;
 import com.answer.model.Student;
+import com.answer.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 /**
  * @descreption
@@ -20,7 +23,20 @@ public class StudentService {
         return studentDao.findByUserName(userName);
     }
 
-    public Student saveStudent(Student student){
+    public Student saveStudent(Student student) {
+        return studentDao.save(student);
+    }
+
+    public List<Student> findAll() {
+        return studentDao.findAll();
+    }
+
+    public Student updateStudent(Student student) {
         return studentDao.saveAndFlush(student);
     }
+
+    public void delete(long id) {
+        studentDao.delete(id);
+    }
+
 }
