@@ -9,6 +9,7 @@
     <modules>
         <module>boot-jpa-redis</module>
         <module>boot-swagger2</module>
+        <module>cloud-eureka</module>
     </modules>
     <packaging>pom</packaging>
 
