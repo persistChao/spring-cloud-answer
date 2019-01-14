@@ -3,6 +3,7 @@ package com.answer.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.answer.model.Student;
 import com.answer.service.StudentService;
+import io.swagger.annotations.ApiImplicitParam;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,12 +24,8 @@ public class StudentController {
     StudentService studentService;
 
     @ApiOperation(value = "保存" , notes = "保存学生")
-    @GetMapping("/save")
-    public String saveUser() {
-        Student student = new Student();
-        student.setAge(27);
-        student.setUserName("answer");
-        student.setPassword("admin");
+    @PostMapping("/save")
+    public String saveUser(@RequestBody Student student) {
         Student re = studentService.saveStudent(student);
         return JSONObject.toJSONString(re);
     }
@@ -39,13 +36,14 @@ public class StudentController {
         return studentService.findAll();
     }
 
-//    @ApiParam()
+    @ApiParam(name = "student" ,value = "学生entity" )
     @ApiOperation(value = "创建学生" , notes = "创建用户")
-    @PostMapping("")
+    @PostMapping("/post")
     public Student postStudent(@RequestBody Student student) {
         return studentService.saveStudent(student);
     }
 
+    @ApiImplicitParam(name = "id" , value = "学生id", paramType = "path" , required = true , dataType = "Integer")
     @ApiOperation(value = "更新信息" , notes = "更新")
     @PutMapping("/{id}")
     public Student putStudent(@PathVariable("id") Long id  , @RequestBody Student std) {
